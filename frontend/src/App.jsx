@@ -4,37 +4,28 @@ const App = () => {
   const [response, setResponse] = useState("");
   const [data, setData] = useState(null);
 
-  async function callOpenAI() {
-    const APIBody = {
-      model: "davinci-002",
-      prompt: "write an email on the subject of:" + response,
-      max_tokens: 200,
-      temperature: 0.7,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0,
+  async function callBackend() {
+    const requestBody = {
+      prompt:
+        `write a letter on the subject: ${response}`,
     };
 
-    await fetch("https://api.openai.com/v1/chat/completions", {
+    await fetch("http://localhost:3000/generate-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
       },
-      body: JSON.stringify(APIBody),
+      body: JSON.stringify(requestBody),
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data && data.choices && data.choices.length > 0) {
-          setData(data.choices[0].text);
-        } else {
-          console.error("Invalid response format:", data);
-        }
+        setData(data.email);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }
+
   return (
     <div>
       <h1 className="text-white text-lg">ECHO</h1>
@@ -45,11 +36,18 @@ const App = () => {
         rows={10}
         onChange={(e) => setResponse(e.target.value)}
       />
-      <button className="bg-blue-500 text-white p-4" onClick={callOpenAI}>
+      <button className="bg-blue-500 text-white p-4" onClick={callBackend}>
         Generate Email
       </button>
       {data !== null ? (
-        <p className="text-white">{data}</p>
+        <div className="email">
+          <p>From: Your Email Address</p>
+          <p>To: Recipient's Email Address</p>
+          <p>Subject: {response}</p>
+          <p>Date: {new Date().toLocaleDateString()}</p>
+          <hr />
+          <p>{data}</p>
+        </div>
       ) : (
         <h1>Generating Email</h1>
       )}
