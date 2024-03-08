@@ -1,15 +1,12 @@
 import { useState } from "react";
-
 const App = () => {
   const [response, setResponse] = useState("");
   const [data, setData] = useState(null);
-
+  const [editable, setEditable] = useState(false);
   async function callBackend() {
     const requestBody = {
-      prompt:
-        `write a letter on the subject: ${response}`,
+      prompt: `write a detailed email body on the subject: ${response}`,
     };
-
     await fetch("http://localhost:3000/generate-email", {
       method: "POST",
       headers: {
@@ -19,7 +16,9 @@ const App = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setData(data.email);
+        const cleanedData = data.email.replace(/\*/g, "");
+        setData(cleanedData);
+        setEditable(true);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -27,26 +26,27 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-white text-lg">ECHO</h1>
       <textarea
-        className="w-full bg-gray-800 text-white p-4"
+        className="w-full bg-gray-800 text-white"
         placeholder="Enter the subject of the email"
-        cols={50}
-        rows={10}
         onChange={(e) => setResponse(e.target.value)}
       />
-      <button className="bg-blue-500 text-white p-4" onClick={callBackend}>
+      <button
+        className="bg-blue-500 flex justify-center items-center text-white p-4"
+        onClick={callBackend}>
         Generate Email
       </button>
-      {data !== null ? (
-        <div className="email">
-          <p>From: Your Email Address</p>
-          <p>To: Recipient's Email Address</p>
-          <p>Subject: {response}</p>
-          <p>Date: {new Date().toLocaleDateString()}</p>
-          <hr />
-          <p>{data}</p>
+      {data !== null && editable ? (
+        <div className="w-full h-screen">
+          <textarea
+            className="w-full bg-gray-800 h-full text-white p-4"
+            value={data}
+            onChange={(e) => setData(e.target.value)}
+            cols={50}
+            rows={10}
+          />
         </div>
       ) : (
         <h1>Generating Email</h1>
