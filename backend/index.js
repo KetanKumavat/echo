@@ -3,7 +3,7 @@ dotenv.config();
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import express from "express";
 import cors from "cors";
-
+import sendEmail from "./controller/sendEmail.js";
 const app = express();
 const port = 3000;
 app.use(cors());
@@ -24,6 +24,8 @@ app.post("/generate-email", async (req, res) => {
     res.status(500).send({ error: "Error generating email" });
   }
 });
+
+app.get("/send-email", sendEmail);
 
 app.listen(port, () => {
   console.log(`Server running on port:${port}`);
