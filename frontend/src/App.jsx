@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SpotlightCompo from "./components/SpotlightCompo";
-
+import Ellipse from "../../frontend/public/Ellipse 9.svg";
 const App = () => {
   const [response, setResponse] = useState("");
   const [senderEmail, setSenderEmail] = useState("");
@@ -62,53 +62,60 @@ const App = () => {
 
     <div className="w-full h-screen bg-black/[0.96] flex-col justify-center items-center">
       <SpotlightCompo />
-      <div className="flex-col justify-center items-center">
-        <label htmlFor="">name</label>
-        <input
-          type="name"
-          placeholder="Enter Your Name"
-          onChange={(e) => setSenderEmail(e.target.value)}
-          className="flex justify-center items-center bg-white text-black p-4"
-        />
-      </div>
-      <div>
-        <label htmlFor="">email</label>
-        <input
-          type="email"
-          placeholder="Enter Your Email Address"
-          onChange={(e) => setSenderEmail(e.target.value)}
-          className="w-1/2 flex justify-center items-center text-white p-4"
-        />
-      </div>
-      <div>
-        <label htmlFor="">subject</label>
-        <textarea
-          className="w-full bg-gray-800 text-white"
-          placeholder="Enter the subject of the email"
-          onChange={(e) => setResponse(e.target.value)}
-        />
-      </div>
-      <div>
-        {data !== null && editable ? (
-          <div className="w-full h-screen">
-            <textarea
-              className="w-full bg-gray-800 h-full text-white p-4"
-              value={data}
-              onChange={(e) => setData(e.target.value)}
-              cols={50}
-              rows={10}
-            />
-          </div>
-        ) : (
-          <h1>Generating Email</h1>
-        )}
-      </div>
-      <div>
-        <button
-          className="bg-blue-500 flex justify-center items-center text-white p-4"
-          onClick={callBackend}>
-          Generate Email
-        </button>
+      <img
+        src={Ellipse}
+        alt="ellipse"
+        className="absolute aspect-square -mt-[30vh] ml-[25vh] pointer-events-none"
+      />
+      <div className="w-3/4 bg-transparent border-2 p-16 z-50 backdrop-blur-md mt-[20vh] rounded-2xl h-3/4 ml-[25vh]">
+        <div className="flex-col justify-center items-center">
+          <label htmlFor="">name</label>
+          <input
+            type="name"
+            placeholder="Enter Your Name"
+            onChange={(e) => setSenderEmail(e.target.value)}
+            className="flex justify-center items-center bg-white text-black p-4"
+          />
+        </div>
+        <div>
+          <label htmlFor="">email</label>
+          <input
+            type="email"
+            placeholder="Enter Your Email Address"
+            onChange={(e) => setSenderEmail(e.target.value)}
+            className="w-1/2 flex justify-center items-center text-white p-4"
+          />
+        </div>
+        <div>
+          <label htmlFor="">subject</label>
+          <textarea
+            className="w-full bg-gray-800 text-white"
+            placeholder="Enter the subject of the email"
+            onChange={(e) => setResponse(e.target.value)}
+          />
+        </div>
+        <div>
+          {data !== null && editable ? (
+            <div className="w-full h-screen">
+              <textarea
+                className="w-full bg-gray-800 h-full text-white p-4"
+                value={data}
+                onChange={(e) => setData(e.target.value)}
+                cols={50}
+                rows={10}
+              />
+            </div>
+          ) : (
+            <h1>Generating Email</h1>
+          )}
+        </div>
+        <div>
+          <button
+            className="bg-blue-500 flex justify-center items-center text-white p-4"
+            onClick={callBackend}>
+            Generate Email
+          </button>
+        </div>
       </div>
     </div>
   );
