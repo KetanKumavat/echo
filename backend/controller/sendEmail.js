@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
-
+import dotenv from "dotenv";
+dotenv.config();
 const sendEmail = async (req, res) => {
   let testAccount = await nodemailer.createTestAccount();
 
@@ -9,8 +10,8 @@ const sendEmail = async (req, res) => {
     port: 587,
     secure: false,
     auth: {
-      user: "ketan.kumavat1984@gmail.com",
-      pass: "jnor ucli hexi ecal",
+      user: process.env.USER,
+      pass: process.env.PASSWORD,
     },
   });
   let info = await transporter.sendMail({
@@ -19,9 +20,9 @@ const sendEmail = async (req, res) => {
         address: "ketan.kumavat1984@gmail.com"
     },
     to: "evangeline.mariadurai@gmail.com",
-    subject: "Hiii Evuuuuu",
-    text: "I ma sending this email from my backend server.",
-    html: "<b>I ma sending this email from my backend server.</b>. <br> <h1>Yayyy!!! it finally worked</h1>",
+    subject: "Hiii Evuuuuu 2nd time",
+    text: "I am sending this email from my backend server.",
+    html: "<b>I am sending this email from my backend server for the 2nd time ik </b>.",
   });
 
   console.log("Message sent: %s", info.messageId);
