@@ -25,7 +25,7 @@ app.post("/generate-email", async (req, res) => {
   }
 });
 
-app.get("/send-email", sendEmail);
+app.post("/send-email", sendEmail);
 
 app.listen(port, () => {
   console.log(`Server running on port:${port}`);

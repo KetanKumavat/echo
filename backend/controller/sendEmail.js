@@ -2,8 +2,7 @@ import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config();
 const sendEmail = async (req, res) => {
-  let testAccount = await nodemailer.createTestAccount();
-
+  const { sender, senderEmail, receiverEmail, subject, email } = req.body;
   let transporter = await nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -16,13 +15,19 @@ const sendEmail = async (req, res) => {
   });
   let info = await transporter.sendMail({
     from: {
-        name: "Ketan Kumavat",
-        address: "ketan.kumavat1984@gmail.com"
+      name: sender,
+      address: senderEmail,
     },
-    to: "evangeline.mariadurai@gmail.com",
-    subject: "Hiii Evuuuuu 2nd time",
-    text: "I am sending this email from my backend server.",
-    html: "<b>I am sending this email from my backend server for the 2nd time ik </b>.",
+    to: receiverEmail,
+    subject: subject,
+    text: email,
+    html: `<html>
+              <body>
+                <p>${email}</p>
+                <br />
+                <p>Powered By Echo</p>
+              </body>
+            </html>`,
   });
 
   console.log("Message sent: %s", info.messageId);
