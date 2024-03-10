@@ -64,7 +64,7 @@ const App = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-      toast.success("Email sent successfully!");
+    toast.success("Email sent successfully!");
   }
 
   return (
@@ -134,6 +134,7 @@ const App = () => {
                 <br />
                 {data !== null && editable ? (
                   <div className="border-slate-400 rounded-xl bg-zinc-200 z-0 bg-opacity-10">
+                    <label htmlFor="">Email Body</label>
                     <textarea
                       className="w-full bg-transparent opacity-1 z-50 text-white font-semibold h-96 rounded-xl p-4"
                       value={data}
@@ -141,11 +142,14 @@ const App = () => {
                     />
                   </div>
                 ) : (
-                  <textarea
-                    className="w-full bg-zinc-200 h-full text-black place-content-start placeholder-black font-semibold text-lg rounded-xl p-4"
-                    placeholder="Write or Generate Email"
-                    onChange={(e) => setData(e.target.value)}
-                  />
+                  <div>
+                    <label htmlFor="">Email Body</label>
+                    <textarea
+                      className="w-full bg-zinc-200 h-full text-black place-content-start placeholder-black font-semibold text-lg rounded-xl p-4"
+                      placeholder="Write or Generate Email"
+                      onChange={(e) => setData(e.target.value)}
+                    />
+                  </div>
                 )}
               </div>
             </div>

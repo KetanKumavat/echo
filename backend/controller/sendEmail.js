@@ -14,10 +14,7 @@ const sendEmail = async (req, res) => {
     },
   });
   let info = await transporter.sendMail({
-    from: {
-      name: sender,
-      address: senderEmail,
-    },
+    from: `"${sender}" <${senderEmail}>`,
     to: receiverEmail,
     subject: subject,
     text: email,
@@ -29,7 +26,7 @@ const sendEmail = async (req, res) => {
               </body>
             </html>`,
   });
-
+  console.log(`Sender: ${senderEmail}, Receiver: ${receiverEmail}`);
   console.log("Message sent: %s", info.messageId);
 
   res.json(info);
