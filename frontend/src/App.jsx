@@ -1,11 +1,16 @@
+/* eslint-disable no-unused-vars */
 import { useState, useRef } from "react";
 import SpotlightCompo from "./components/SpotlightCompo";
 import Ellipse from "../../frontend/public/Ellipse 9.svg";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-
+import Signup from "./components/Login";
+// import {Register} from "./components/Register";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useAuth } from "./AuthContext/authContext.jsx";
 const App = () => {
+  
   const myRef = useRef(null);
   const executeScroll = () =>
     myRef.current.scrollIntoView({ behavior: "smooth" });
@@ -66,11 +71,15 @@ const App = () => {
       });
     toast.success("Email sent successfully!");
   }
+  const { user } = useAuth();
 
+  if (!user) {
+    return <Signup />;
+  }
   return (
+    <Router>
     <div className="w-full h-screen bg-black/[0.96] flex-col justify-center items-center">
       <SpotlightCompo />
-
       <div
         className="w-full flex absolute z-50 text-center justify-center items-center"
         onClick={executeScroll}>
@@ -80,7 +89,6 @@ const App = () => {
           <div className="chevron"></div>
         </div>
       </div>
-
       <img
         src={Ellipse}
         alt="ellipse"
@@ -156,6 +164,12 @@ const App = () => {
           </div>
         </div>
       </div>
+      {/* <div className="w-3/4 bg-[rgba(255,255,255,0.05)] p-16 z-50 backdrop-blur-8xl mt-[18vh] rounded-2xl h-3/4">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div> */}
       <div className="flex gap-10 justify-center items-center -mt-8">
         <button
           className="px-3 py-3 rounded-xl border border-neutral-600 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-lg"
@@ -170,6 +184,7 @@ const App = () => {
         <ToastContainer />
       </div>
     </div>
+    </Router>
   );
 };
 

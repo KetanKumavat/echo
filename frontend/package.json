@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.0.2",
+    "@tabler/icons-react": "^2.47.0",
     "clsx": "^2.1.0",
     "firebase": "^10.8.1",
     "framer-motion": "^11.0.8",
