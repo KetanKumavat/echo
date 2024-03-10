@@ -17,13 +17,6 @@ export default function SpotlightPreview() {
           Say goodbye to writer's block.
         </p>
       </div>
-      <div className="w-full flex-col absolute z-50 text-center ml-[200vh] mt-[75vh]">
-        <div className="container">
-          <div className="chevron"></div>
-          <div className="chevron"></div>
-          <div className="chevron"></div>
-        </div>
-      </div>
     </div>
   );
 }

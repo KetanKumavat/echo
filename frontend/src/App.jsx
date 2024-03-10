@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SpotlightCompo from "./components/SpotlightCompo";
 import Ellipse from "../../frontend/public/Ellipse 9.svg";
+
 const App = () => {
+  const myRef = useRef(null);
+   const executeScroll = () =>
+     myRef.current.scrollIntoView({ behavior: "smooth" });    
   const [response, setResponse] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [senderEmail, setSenderEmail] = useState("");
@@ -63,13 +67,26 @@ const App = () => {
 
     <div className="w-full h-screen bg-black/[0.96] flex-col justify-center items-center">
       <SpotlightCompo />
+
+      <div
+        className="w-full flex absolute z-50 text-center justify-center items-center"
+        onChange={executeScroll}>
+        <div className="container">
+          <div className="chevron"></div>
+          <div className="chevron"></div>
+          <div className="chevron"></div>
+        </div>
+      </div>
+
       <img
         src={Ellipse}
         alt="ellipse"
         className="absolute aspect-square -mt-[28vh] ml-[25vh] opacity-35 pointer-events-none"
       />
 
-      <div className="h-screen w-full flex justify-center">
+      <div
+        className="h-screen w-full flex justify-center"
+        ref={myRef}>
         <div className="w-3/4 bg-[rgba(255,255,255,0.05)] p-16 z-50 backdrop-blur-8xl mt-[20vh] rounded-2xl h-3/4">
           <div className="flex flex-col justify-center">
             <div className="flex justify-start gap-24 w-full">
