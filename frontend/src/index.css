@@ -20,6 +20,12 @@
 html {
   scroll-behavior: smooth;
 }
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
 .container {
   position: relative;
   width: 100%;
@@ -64,7 +70,6 @@ html {
 }
 
 .chevron:after {
-  right: 0;
   width: 50%;
   transform: skew(0deg, -30deg);
 }
