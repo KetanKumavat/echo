@@ -14,15 +14,19 @@ const sendEmail = async (req, res) => {
     },
   });
   let info = await transporter.sendMail({
-    from: `"${sender}" <${senderEmail}>`,
+    from: {
+      name: sender,
+      address: senderEmail,
+    },
     to: receiverEmail,
     subject: subject,
     text: email,
     html: `<html>
               <body>
+                <h5>From: ${senderEmail}</h5>
                 <p>${email}</p>
                 <br />
-                <p>Powered By Echo</p>
+                <h5>Powered By Echo</h5>
               </body>
             </html>`,
   });
