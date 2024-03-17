@@ -44,7 +44,10 @@ const App = () => {
 
   async function sendEmail() {
     if (!Sender || !senderEmail || !receiverEmail || !subject || !data) {
-      toast.error("Please fill in all fields.");
+      toast.error("Please fill in all fields.", {
+        position: "bottom-right",
+        // theme: "dark"
+      });
       return;
     }
     const requestBody = {
@@ -68,7 +71,9 @@ const App = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-    toast.success("Email sent successfully!");
+    toast.success("Email sent successfully!", {
+      position: "bottom-right",
+    });
   }
   // const { user } = useAuth();
 
@@ -77,6 +82,19 @@ const App = () => {
   // }
   return (
     <Router>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
       <div className="w-full h-screen bg-black/[0.96] scale-110 md:scale-100 items-center z-50">
         <SpotlightCompo />
         <div
@@ -164,6 +182,18 @@ const App = () => {
                 </div>
               </div>
             </div>
+            <div className="w-full flex gap-4 right-0 mr-[50vh] md:gap-x-10 pt-2 p-2 mt-16 scale-75 md:scale-100 justify-center">
+              <button
+                className="px-4 py-2 md:py-3 rounded-lg border-2 border-neutral-100 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-xl focus-visible:font-white focus-visible:font-bold focus-visible:bg-transparent focus-visible:border-2-white focus-visible:text-white focus-visible:rounded-xl"
+                onClick={callBackend}>
+                Generate Email
+              </button>
+              <button
+                className="px-8 rounded-lg border-2 border-neutral-100 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-xl focus-visible:font-white focus-visible:font-bold focus-visible:bg-transparent focus-visible:border-2-white focus-visible:text-white focus-visible:rounded-xl"
+                onClick={sendEmail}>
+                Send Email
+              </button>
+            </div>
           </div>
         </div>
         {/* <div className="w-3/4 bg-[rgba(255,255,255,0.05)] p-16 z-50 backdrop-blur-8xl mt-[18vh] rounded-2xl h-3/4">
@@ -172,19 +202,6 @@ const App = () => {
           <Route path="/register" element={<Register />} />
         </Routes>
       </div> */}
-        <div className="w-full flex gap-3 right-0 mr-[50vh] md:gap-x-10 -mt-28 justify-center">
-          <button
-            className="px-3 py-3 rounded-xl border-2 border-neutral-100 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-xl focus-visible:font-white focus-visible:font-bold focus-visible:bg-transparent focus-visible:border-2-white focus-visible:text-white focus-visible:rounded-xl"
-            onClick={callBackend}>
-            Generate Email
-          </button>
-          <button
-            className="px-6 py-3 rounded-xl border-2 border-neutral-100 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-xl focus-visible:font-white focus-visible:font-bold focus-visible:bg-transparent focus-visible:border-2-white focus-visible:text-white focus-visible:rounded-xl"
-            onClick={sendEmail}>
-            Send Email
-          </button>
-          <ToastContainer />
-        </div>
       </div>
     </Router>
   );
