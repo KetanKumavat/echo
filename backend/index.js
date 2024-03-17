@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(
-  cors({ origin: ["http://echo-echo.vercel.app/", "http://localhost:5173/"] })
+  cors({ origin: ["http://echo-echo.vercel.app", "http://localhost:5173"] })
 );
 app.use(express.json());
 
