@@ -26,7 +26,7 @@ const App = () => {
     const requestBody = {
       prompt: `write an email body (write it in html paragraph format) on the subject: ${subject}`,
     };
-    await fetch("https://echo-backend.vercel.app/generate-email", {
+    await fetch("https://echo-6oy9.onrender.com/generate-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const App = () => {
       subject: subject,
       email: data,
     };
-    await fetch("https://echo-backend.vercel.app/send-email", {
+    await fetch("https://echo-6oy9.onrender.com/send-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
