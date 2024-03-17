@@ -71,9 +71,9 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
+  /* overflow: hidden; */
   width: 100%;
-  height: fit-content;
+  /* height: fit-content; */
 }
 @media (max-width: 640px) {
   body {

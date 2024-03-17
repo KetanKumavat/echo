@@ -8,6 +8,8 @@ import { ToastContainer } from "react-toastify";
 import Signup from "./components/Login";
 // import {Register} from "./components/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+
 const App = () => {
   const myRef = useRef(null);
   const executeScroll = () =>
@@ -82,6 +84,15 @@ const App = () => {
   // }
   return (
     <Router>
+      <GoogleOAuthProvider clientId="686300044731-9dhvddarp1ca8imf9i0sr5a0oco5kepe.apps.googleusercontent.com">
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            console.log(credentialResponse);
+            console.log(credentialResponse.accessToken);
+          }}
+          onError={(error) => console.log(error)}
+        />
+      </GoogleOAuthProvider>
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
