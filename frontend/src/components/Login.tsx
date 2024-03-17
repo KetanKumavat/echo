@@ -5,10 +5,10 @@ import { cn } from "../../src/utils/cn";
 import {
   IconBrandGoogle,
 } from "@tabler/icons-react";
-import { useAuth } from "../AuthContext/authContext";
+// import { useAuth } from "../AuthContext/authContext";
 
 export default function Signup() {
-   const { register } = useAuth();
+  //  const { register } = useAuth();
    const [firstName, setFirstName] = useState("");
    const [lastName, setLastName] = useState("");
    const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ export default function Signup() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
      try {
-       await register(email, password);
+      //  await register(email, password);
        // You can redirect the user to another page after successful registration
      } catch (error) {
        setError("Failed to create an account");

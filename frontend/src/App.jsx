@@ -8,7 +8,6 @@ import { ToastContainer } from "react-toastify";
 import Signup from "./components/Login";
 // import {Register} from "./components/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useAuth } from "./AuthContext/authContext.jsx";
 const App = () => {
   const myRef = useRef(null);
   const executeScroll = () =>
@@ -20,6 +19,7 @@ const App = () => {
   const [data, setData] = useState(null);
   const [Sender, setSender] = useState("");
   const [editable, setEditable] = useState(false);
+
   async function callBackend() {
     const requestBody = {
       prompt: `write an email body (write it in html paragraph format) on the subject: ${subject}`,
@@ -70,17 +70,17 @@ const App = () => {
       });
     toast.success("Email sent successfully!");
   }
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   // if (!user) {
   //   return <Signup />;
   // }
   return (
     <Router>
-      <div className="w-full h-screen bg-black/[0.96] flex-col justify-center items-center">
+      <div className="w-full h-screen bg-black/[0.96] scale-110 md:scale-100 items-center z-50">
         <SpotlightCompo />
         <div
-          className="w-full flex absolute z-50 text-center justify-center items-center"
+          className="w-full flex z-50 text-center justify-center items-center cursor-pointer absolute bottom-10 md:-bottom-8"
           onClick={executeScroll}>
           <div className="container">
             <div className="chevron"></div>
@@ -91,11 +91,11 @@ const App = () => {
         <img
           src={Ellipse}
           alt="ellipse"
-          className="absolute aspect-square stransform scale-125 opacity-70 mt-40 scale-y-150 md:-mt-[28vh] md:ml-[40vh] md:opacity-35 md:scale-150 pointer-events-none z-0 "
+          className="absolute aspect-square transform  opacity-70 mt-72 md:-mt-[40vh] md:ml-[40vh] md:opacity-35 md:scale-150 pointer-events-none md:absolute z-0 scale-125 "
         />
 
         <div className="h-screen flex justify-center" ref={myRef}>
-          <div className="w-3/4 bg-[rgba(255,255,255,0.05)] p-16 z-50 backdrop-blur-8xl mt-[18vh] rounded-2xl h-3/4 transform scale-95 md:scale-100 md:border-none border">
+          <div className="w-3/4 bg-[rgba(255,255,255,0.05)] p-5 md:p-20  z-50 backdrop-blur-8xl mt-40 md:mt-[18vh] rounded-2xl transform scale-110 md:scale-100 md:border-none border h-fit md:h-fit  max-h-fit justify-center">
             <div className="flex flex-col justify-center md:scale-105">
               <div className="flex flex-col md:flex-row gap-2 w-full">
                 <div className="flex flex-col flex-grow">
@@ -172,7 +172,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
         </Routes>
       </div> */}
-        <div className="flex gap-10 justify-center items-center -mt-8">
+        <div className="flex gap-10 -mt-28 mb-2 justify-center">
           <button
             className="px-3 py-3 rounded-xl border border-neutral-600 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-lg"
             onClick={callBackend}>
