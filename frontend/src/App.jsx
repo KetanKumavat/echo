@@ -82,10 +82,10 @@ const App = () => {
         <div
           className="w-full flex z-50 text-center justify-center items-center cursor-pointer absolute bottom-10 md:-bottom-8"
           onClick={executeScroll}>
-          <div className="container">
-            <div className="chevron"></div>
-            <div className="chevron"></div>
-            <div className="chevron"></div>
+          <div className="container" onClick={executeScroll}>
+            <div className="chevron" onClick={executeScroll}></div>
+            <div className="chevron" onClick={executeScroll}></div>
+            <div className="chevron" onClick={executeScroll}></div>
           </div>
         </div>
         <img
@@ -172,14 +172,14 @@ const App = () => {
           <Route path="/register" element={<Register />} />
         </Routes>
       </div> */}
-        <div className="flex gap-10 -mt-28 mb-2 justify-center">
+        <div className="w-full flex gap-3 right-0 mr-[50vh] md:gap-x-10 -mt-28 justify-center">
           <button
-            className="px-3 py-3 rounded-xl border border-neutral-600 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-lg"
+            className="px-3 py-3 rounded-xl border-2 border-neutral-100 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-xl focus-visible:font-white focus-visible:font-bold focus-visible:bg-transparent focus-visible:border-2-white focus-visible:text-white focus-visible:rounded-xl"
             onClick={callBackend}>
             Generate Email
           </button>
           <button
-            className="px-3 py-3 rounded-xl border border-neutral-600 text-black text-md font-bold bg-white text-lg hover:bg-transparent hover:text-white transition duration-200"
+            className="px-6 py-3 rounded-xl border-2 border-neutral-100 text-black text-md font-bold bg-white hover:bg-transparent hover:text-white transition duration-200 text-xl focus-visible:font-white focus-visible:font-bold focus-visible:bg-transparent focus-visible:border-2-white focus-visible:text-white focus-visible:rounded-xl"
             onClick={sendEmail}>
             Send Email
           </button>
