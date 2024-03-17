@@ -5,7 +5,7 @@ import express from "express";
 import cors from "cors";
 import sendEmail from "./controller/sendEmail.js";
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(
   cors({ origin: ["http://echo-echo.vercel.app/", "http://localhost:5173/"] })
