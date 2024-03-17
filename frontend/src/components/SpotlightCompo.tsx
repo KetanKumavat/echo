@@ -12,7 +12,7 @@ export default function SpotlightPreview() {
         fill="white"
       />
       <div className="flex flex-col justify-center md:m-[25vh] max-w-7xl  mx-auto relative z-10  w-full scroll-pt-24 md:pt-0">
-        <h1 className="text-8xl md:text-9xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+        <h1 className="text-9xl md:text-9xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 -mt-40">
           Echo
         </h1>
         <p className="mt-4 text-3xl font-semibold text-neutral-300 max-w-lg text-center mx-auto">

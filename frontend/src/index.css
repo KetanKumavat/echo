@@ -6,7 +6,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  /* overflow-x: hidden; */
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   /* background-color: #ffffff; */
@@ -24,16 +24,18 @@ html {
   position: absolute;
   padding: 0%;
   margin: 0%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 #spotty {
-  width: 100%;
-  height: 100vh;
+  /* width: 100%; */
+  /* height: 100vh; */
+  overflow-x: hidden;
+
   /* background-color: #111111;
   background-image: linear-gradient(
     32deg,
     rgba(8, 8, 8, 0.74) 30px,
-    transparent
+    transparen
   );
   background-size: 120px 120px;
   background-position: -5px -5px; */
@@ -70,13 +72,13 @@ html {
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  /* overflow: hidden; */
   width: 100%;
-  /* height: fit-content; */
+  height: 100%;
+  /* position: absolute; */
+  overflow-x: hidden;
 }
 @media (max-width: 640px) {
-  body {
+  html {
     --color: rgba(103, 94, 94, 0.187);
     background-color: rgb(0 0 0 / 0.96);
     background-image: linear-gradient(
@@ -104,7 +106,7 @@ body {
         transparent
       );
     background-size: 140px 150px;
-    z-index: 0;
+    overflow: hidden;
   }
 }
 .container {
