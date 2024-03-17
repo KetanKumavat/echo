@@ -7,7 +7,9 @@ import sendEmail from "./controller/sendEmail.js";
 const app = express();
 const port = 3000;
 
-app.use(cors({ origin: "http://echo-echo.vercel.app/" }));
+app.use(
+  cors({ origin: ["http://echo-echo.vercel.app/", "http://localhost:5173/"] })
+);
 app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
