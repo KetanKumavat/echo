@@ -1,11 +1,12 @@
 import React from "react";
 import { cn } from "../utils/cn";
 import { Spotlight } from "./ui/Spotlight";
+import { IconBrandGoogle } from "@tabler/icons-react";
 
 export default function SpotlightPreview() {
   return (
     <div
-      className="h-screen w-full flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden items-center justify-center"
+      className="h-screen w-full flex md:items-center md:justify-center antialiased bg-grid-white/[0.02] relative overflow-hidden items-center justify-center"
       id="spotty">
       <Spotlight
         className="-top-40 md:flex justify-center items-center hidden left-0 md:left-60 md:-top-20"
