@@ -287,7 +287,6 @@ const App = () => {
         draggable
         pauseOnHover
         theme="light"
-        transition="Bounce"
       />
       <div className="w-full h-screen bg-black/[0.96] scale-110 md:scale-100 items-center z-50">
         <SpotlightCompo className="z-0" />
