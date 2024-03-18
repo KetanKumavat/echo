@@ -84,15 +84,6 @@ const App = () => {
   // }
   return (
     <Router>
-      <GoogleOAuthProvider clientId="686300044731-9dhvddarp1ca8imf9i0sr5a0oco5kepe.apps.googleusercontent.com">
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            console.log(credentialResponse);
-            console.log(credentialResponse.accessToken);
-          }}
-          onError={(error) => console.log(error)}
-        />
-      </GoogleOAuthProvider>
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
@@ -126,7 +117,7 @@ const App = () => {
         <div className="h-screen flex justify-center" ref={myRef}>
           <div className="w-3/4 bg-[rgba(255,255,255,0.05)] p-5 md:p-20  z-50 backdrop-blur-8xl mt-40 md:mt-[18vh] rounded-2xl transform scale-110 md:scale-100 md:border-none border h-fit md:h-fit  max-h-fit justify-center">
             <div className="flex flex-col justify-center md:scale-105">
-              <div className="flex flex-col md:flex-row gap-2 w-full">
+              <div className="flex flex-col lg:flex-row md:col-auto gap-2 w-full ">
                 <div className="flex flex-col flex-grow">
                   <label htmlFor="">Name</label>
                   <input
