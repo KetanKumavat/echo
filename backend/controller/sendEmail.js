@@ -26,7 +26,9 @@ const sendEmail = async (req, res) => {
                 <h5>From: ${senderEmail}</h5>
                 <p>${email}</p>
                 <br />
+                <a href="https://echo-echo.vercel.app/">
                 <h5>Powered By Echo</h5>
+                </a>
               </body>
             </html>`,
   });

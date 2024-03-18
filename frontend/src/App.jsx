@@ -21,27 +21,35 @@ const App = () => {
   const [data, setData] = useState(null);
   const [Sender, setSender] = useState("");
   const [editable, setEditable] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function callBackend() {
+    setLoading(true);
     const requestBody = {
       prompt: `write an email body (write it in html paragraph format) on the subject: ${subject}`,
     };
-    await fetch("https://echo-6oy9.onrender.com/generate-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    })
-      .then((subject) => subject.json())
-      .then((data) => {
-        const cleanedData = data.email.replace(/\*/g, "");
-        setData(cleanedData);
-        setEditable(true);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+
+    try {
+      const result = await fetch(
+        "https://echo-6oy9.onrender.com/generate-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      const data = await result.json();
+      const cleanedData = data.email.replace(/\*/g, "");
+      setData(cleanedData);
+      setEditable(true);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   async function sendEmail() {
@@ -77,6 +85,12 @@ const App = () => {
       position: "bottom-right",
     });
   }
+  const scroll = () => {
+    const imageDropInputSection = document.getElementById("scroll-down");
+    if (imageDropInputSection) {
+      imageDropInputSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   // const { user } = useAuth();
 
   // if (!user) {
@@ -101,7 +115,7 @@ const App = () => {
         <SpotlightCompo />
         <div
           className="w-full flex z-50 text-center justify-center items-center cursor-pointer absolute bottom-10 md:-bottom-8"
-          onClick={executeScroll}>
+          onTouchStart={scroll}>
           <div className="container" onClick={executeScroll}>
             <div className="chevron" onClick={executeScroll}></div>
             <div className="chevron" onClick={executeScroll}></div>
@@ -114,7 +128,10 @@ const App = () => {
           className="absolute aspect-square transform  opacity-70 mt-72 md:-mt-[40vh] md:ml-[40vh] md:opacity-35 md:scale-150 pointer-events-none md:absolute z-0 scale-125 "
         />
 
-        <div className="h-screen flex justify-center" ref={myRef}>
+        <div
+          className="h-screen flex justify-center"
+          ref={myRef}
+          id="scroll-down">
           <div className="w-3/4 bg-[rgba(255,255,255,0.05)] p-5 md:p-20  z-50 backdrop-blur-8xl mt-40 md:mt-[18vh] rounded-2xl transform scale-110 md:scale-100 md:border-none border h-fit md:h-fit  max-h-fit justify-center">
             <div className="flex flex-col justify-center md:scale-105">
               <div className="flex flex-col lg:flex-row md:col-auto gap-2 w-full ">
@@ -160,26 +177,29 @@ const App = () => {
               <div>
                 <div>
                   <br />
-                  {data !== null && editable ? (
-                    <div className="border-slate-400 rounded-xl bg-zinc-200 z-0 bg-opacity-10">
+                  {loading ? (
+                    <div>
                       <label htmlFor="">Email Body</label>
                       <textarea
-                        className="w-full bg-transparent opacity-1 z-50 text-white font-semibold rounded-xl p-4 overflow-y-scroll"
+                        className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl my-auto mx-auto p-4 overflow-y-scroll"
                         value={data}
-                        rows={4}
+                        contentEditable="false"
+                        placeholder="Generating Email..."
+                        rows={8}
                         onChange={(e) => setData(e.target.value)}
                       />
                     </div>
                   ) : (
-                    <div>
+                    <>
                       <label htmlFor="">Email Body</label>
                       <textarea
-                        className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl p-4 my-auto mx-auto  overflow-y-auto"
-                        placeholder="Write or Generate an Email"
-                        rows={4}
+                        className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl my-auto mx-auto p-4 overflow-y-scroll"
+                        placeholder="Write Or Generate Email Body"
+                        value={data}
+                        rows={8}
                         onChange={(e) => setData(e.target.value)}
                       />
-                    </div>
+                    </>
                   )}
                 </div>
               </div>
