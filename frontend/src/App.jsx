@@ -371,35 +371,30 @@ const App = () => {
                     />
                   </div>
                   <br />
-                  <div>
+                  {loading && editable ? (
                     <div>
-                      <br />
-                      {loading && editable ? (
-                        <div>
-                          <label htmlFor="">Email Body</label>
-                          <textarea
-                            className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl my-auto mx-auto p-4 overflow-y-scroll"
-                            value={data}
-                            contentEditable="false"
-                            placeholder="Generating Email..."
-                            rows={6}
-                            onChange={(e) => setData(e.target.value)}
-                          />
-                        </div>
-                      ) : (
-                        <>
-                          <label htmlFor="">Email Body</label>
-                          <textarea
-                            className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl my-auto mx-auto p-4 overflow-y-scroll"
-                            placeholder="Write Or Generate Email Body"
-                            value={data}
-                            rows={4}
-                            onChange={(e) => setData(e.target.value)}
-                          />
-                        </>
-                      )}
+                      <label htmlFor="">Email Body</label>
+                      <textarea
+                        className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl my-auto mx-auto p-4 overflow-y-scroll"
+                        value={data}
+                        contentEditable="false"
+                        placeholder="Generating Email..."
+                        rows={6}
+                        onChange={(e) => setData(e.target.value)}
+                      />
                     </div>
-                  </div>
+                  ) : (
+                    <>
+                      <label htmlFor="">Email Body</label>
+                      <textarea
+                        className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl my-auto mx-auto p-4 overflow-y-scroll"
+                        placeholder="Write Or Generate Email Body"
+                        value={data}
+                        rows={4}
+                        onChange={(e) => setData(e.target.value)}
+                      />
+                    </>
+                  )}
                 </div>
                 <div className="w-full flex gap-4 right-0 mr-[50vh] md:gap-x-10 pt-2 p-2 mt-16 scale-75 md:scale-100 justify-center">
                   <button
