@@ -371,13 +371,12 @@ const App = () => {
                     />
                   </div>
                   <br />
-                  {loading && editable ? (
+                  {loading ? (
                     <div>
                       <label htmlFor="">Email Body</label>
                       <textarea
                         className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl my-auto mx-auto p-4 overflow-y-scroll"
                         value={data}
-                        contentEditable="false"
                         placeholder="Generating Email..."
                         rows={6}
                         onChange={(e) => setData(e.target.value)}
