@@ -30,7 +30,7 @@ const App = () => {
       const result = await signInWithPopup(auth, provider);
       setUser(result.user);
       // console.log(result.user);
-      toast.success("Logged in successfully!", {
+      toast.success(`Welcome ${result.user.displayName}!`, {
         position: "bottom-right",
       });
       setSender(result.user.displayName);
@@ -39,7 +39,7 @@ const App = () => {
       console.log(result.user.email);
     } catch (error) {
       console.error("Error signing in with Google:", error);
-      toast.error("Error signing in with Google", {
+      toast.error(error, {
         position: "bottom-right",
       });
     }
@@ -47,6 +47,9 @@ const App = () => {
 
   const handleLogout = async () => {
     try {
+      toast.success("Logged out successfully!", {
+        position: "bottom-right",
+      });
       await signOut(auth);
       setUser(null);
     } catch (error) {
@@ -73,7 +76,7 @@ const App = () => {
       );
 
       const data = await result.json();
-      const cleanedData = data.email.replace(/\*/g, "");
+      const cleanedData = data.email.replace(/\*/g, ""); //regex to remove unwanted characters
       setData(cleanedData);
       setEditable(true);
     } catch (error) {
@@ -273,7 +276,6 @@ const App = () => {
     // </Router>
 
     //conditional rendering
-
     <Router>
       <ToastContainer
         position="bottom-right"
@@ -389,7 +391,7 @@ const App = () => {
                         className="w-full bg-zinc-200 h-full text-black placeholder-black font-semibold text-lg rounded-xl my-auto mx-auto p-4 overflow-y-scroll"
                         placeholder="Write Or Generate Email Body"
                         value={data}
-                        rows={4}
+                        rows={8}
                         onChange={(e) => setData(e.target.value)}
                       />
                     </>
