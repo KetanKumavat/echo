@@ -207,7 +207,7 @@ const App = () => {
     //                 type="email"
     //                 placeholder="Enter Recipient's Email Address"
     //                 onChange={(e) => setReceiverEmail(e.target.value)}
-    //                 className="font-semibold text-left placeholder-opacity-95 rounded-xl bg-zinc-200 text-lg placeholder-black text-black p-4"
+    //                 className="font-semibold text-left placeholder-opacity-95  rounded-xl bg-zinc-200 text-lg placeholder-black text-black p-4"
     //               />
     //             </div>
     //           </div>
@@ -216,7 +216,7 @@ const App = () => {
     //           <div>
     //             <label htmlFor="">Subject</label>
     //             <input
-    //               className="w-full flex font-semibold justify-center text-lg items-center placeholder-opacity-95 rounded-xl bg-zinc-200 placeholder-black text-black p-4 text-md"
+    //               className="w-full flex font-semibold justify-center text-lg items-center focus:outline-none placeholder-opacity-95 rounded-xl bg-zinc-200 placeholder-black text-black p-4 text-md"
     //               placeholder="Enter the subject of the email"
     //               onChange={(e) => setSubject(e.target.value)}
     //             />
