@@ -3,195 +3,195 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  /* overflow-x: hidden; */
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  /* background-color: #ffffff; */
-  background-color: rgb(0 0 0 / 0.96);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    /* overflow-x: hidden; */
+    color-scheme: light dark;
+    /* color: rgba(255, 255, 255, 0.87); */
+    /* background-color: #ffffff; */
+    background-color: rgb(0 0 0 / 0.96);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 html {
-  scroll-behavior: smooth;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  padding: 0%;
-  margin: 0%;
-  /* overflow-x: hidden; */
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 0%;
+    margin: 0%;
 }
-#spotty {
-  /* width: 100%; */
-  /* height: 100vh; */
-  overflow-x: hidden;
 
-  /* background-color: #111111;
-  background-image: linear-gradient(
-    32deg,
-    rgba(8, 8, 8, 0.74) 30px,
-    transparen
-  );
-  background-size: 120px 120px;
-  background-position: -5px -5px; */
-
-  /*colored line*/
-  --color: rgba(103, 94, 94, 0.187);
-  background-color: rgb(0 0 0 / 0.96);
-  background-image: linear-gradient(
-      0deg,
-      transparent 24%,
-      var(--color) 25%,
-      var(--color) 26%,
-      transparent 27%,
-      transparent 74%,
-      var(--color) 75%,
-      var(--color) 76%,
-      transparent 77%,
-      transparent
-    ),
-    linear-gradient(
-      90deg,
-      transparent 24%,
-      var(--color) 25%,
-      var(--color) 26%,
-      transparent 27%,
-      transparent 74%,
-      var(--color) 75%,
-      var(--color) 76%,
-      transparent 77%,
-      transparent
-    );
-  background-size: 140px 150px;
-}
 body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  /* position: absolute; */
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
 }
-@media (max-width: 640px) {
-  html {
-    --color: rgba(103, 94, 94, 0.187);
-    background-color: rgb(0 0 0 / 0.96);
-    background-image: linear-gradient(
-        0deg,
-        transparent 24%,
-        var(--color) 25%,
-        var(--color) 26%,
-        transparent 27%,
-        transparent 74%,
-        var(--color) 75%,
-        var(--color) 76%,
-        transparent 77%,
-        transparent
-      ),
-      linear-gradient(
-        90deg,
-        transparent 24%,
-        var(--color) 25%,
-        var(--color) 26%,
-        transparent 27%,
-        transparent 74%,
-        var(--color) 75%,
-        var(--color) 76%,
-        transparent 77%,
-        transparent
-      );
-    background-size: 140px 150px;
-    overflow: hidden;
-  }
-}
+
 .container {
-  position: relative;
-  width: 100%;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  scale: 1.2;
-  /* margin-bottom: 8vh ; */
+    position: relative;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    scale: 1.2;
+    /* margin-bottom: 8vh ; */
 }
 
 .chevron {
-  margin-top: -25vh;
-  position: absolute;
-  width: 28px;
-  height: 7px;
-  opacity: 0;
-  transform: scale3d(0.5, 0.5, 0.5);
-  animation: move 3s ease-out infinite;
+    margin-top: -25vh;
+    position: absolute;
+    width: 28px;
+    height: 7px;
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 0.5);
+    animation: move 3s ease-out infinite;
 }
 
 .chevron:first-child {
-  animation: move 3s ease-out 1s infinite;
+    animation: move 3s ease-out 1s infinite;
 }
 
 .chevron:nth-child(2) {
-  animation: move 3s ease-out 2s infinite;
+    animation: move 3s ease-out 2s infinite;
 }
 
 .chevron:before,
 .chevron:after {
-  content: " ";
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 51%;
-  background: #fff;
+    content: " ";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 51%;
+    background: #fff;
 }
 
 .chevron:before {
-  left: 0;
-  transform: skew(0deg, 30deg);
+    left: 0;
+    transform: skew(0deg, 30deg);
 }
 
 .chevron:after {
-  width: 50%;
-  transform: skew(0deg, -30deg);
+    width: 50%;
+    transform: skew(0deg, -30deg);
 }
 
 @keyframes move {
-  25% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 1;
-    transform: translateY(30px);
-  }
-  67% {
-    opacity: 1;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
-  }
+    25% {
+        opacity: 1;
+    }
+    33% {
+        opacity: 1;
+        transform: translateY(30px);
+    }
+    67% {
+        opacity: 1;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+    }
 }
 
 .text {
-  display: block;
-  margin-top: 75px;
-  margin-left: -30px;
-  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
-  font-size: 12px;
-  color: #fff;
-  text-transform: uppercase;
-  white-space: nowrap;
-  opacity: 0.25;
-  animation: pulse 2s linear alternate infinite;
+    display: block;
+    margin-top: 75px;
+    margin-left: -30px;
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.25;
+    animation: pulse 2s linear alternate infinite;
 }
 
 @keyframes pulse {
-  to {
+    to {
+        opacity: 1;
+    }
+}
+
+.Btn {
+    --black: #000000;
+    --ch-black: #141414;
+    --eer-black: #1b1b1b;
+    --night-rider: #2e2e2e;
+    --white: #ffffff;
+    --af-white: #f3f3f3;
+    --ch-white: #e1e1e1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--af-white);
+}
+
+/* plus sign */
+.sign {
+    width: 100%;
+    transition-duration: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign svg {
+    width: 17px;
+}
+
+.sign svg path {
+    fill: var(--night-rider);
+}
+/* text */
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: var(--night-rider);
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: 0.3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+    width: 125px;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+}
+
+.Btn:hover .sign {
+    width: 30%;
+    transition-duration: 0.3s;
+    padding-left: 20px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
     opacity: 1;
-  }
+    width: 70%;
+    transition-duration: 0.3s;
+    padding-right: 10px;
+    color: var(--black);
+}
+/* button click effect*/
+.Btn:active {
+    transform: translate(2px, 2px);
 }
