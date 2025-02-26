@@ -184,7 +184,7 @@ const App = () => {
                 <div className="w-full flex flex-col justify-center items-center z-50">
                     {user ? (
                         <button
-                            className="flex -mt-[80vh] gap-2 border-2 border-white p-2 md:scale-125 rounded-md bg-white"
+                            className="flex -mt-[60vh] gap-2 border-2 border-white p-2 md:scale-125 rounded-md bg-white"
                             onClick={handleLogout}
                         >
                             <div class="sign">
