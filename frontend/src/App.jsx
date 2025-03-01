@@ -60,7 +60,7 @@ const App = () => {
     async function callBackend() {
         setLoading(true);
         const requestBody = {
-            prompt: `Generate a professional and well-structured email body in HTML format based on the following subject: "${subject}". 
+            prompt: `Generate a professional and well-structured email body based on the following subject: "${subject}". 
 
           - The email should start with a proper greeting.
           - Keep the tone formal yet engaging.
@@ -68,7 +68,10 @@ const App = () => {
           - Use proper paragraph formatting with <p> tags.
           - End with a polite closing and a signature placeholder.
 
-          Output only the email body without any additional explanations or notes.`,
+          Output only the email body without any additional explanations or notes.
+          
+          Important: Return only the formatted email content without any code block markers or html tags around the entire content.
+          Format paragraphs directly with <p> tags in the content.`,
         };
 
         try {
@@ -175,11 +178,22 @@ const App = () => {
                     className="w-full flex z-50 text-center justify-center items-center cursor-pointer absolute bottom-10 md:-bottom-8"
                     onTouchStart={scroll}
                 >
-                    <div className="container" onClick={executeScroll}>
-                        <div className="chevron" onClick={executeScroll}></div>
-                        <div className="chevron" onClick={executeScroll}></div>
-                        <div className="chevron" onClick={executeScroll}></div>
-                    </div>
+                    {user && (
+                        <div className="container" onClick={executeScroll}>
+                            <div
+                                className="chevron"
+                                onClick={executeScroll}
+                            ></div>
+                            <div
+                                className="chevron"
+                                onClick={executeScroll}
+                            ></div>
+                            <div
+                                className="chevron"
+                                onClick={executeScroll}
+                            ></div>
+                        </div>
+                    )}
                 </div>
                 <div className="w-full flex flex-col justify-center items-center z-50">
                     {user ? (
@@ -231,12 +245,13 @@ const App = () => {
                         </button>
                     )}
                 </div>
-                {user ? (
+                {user && (
                     <>
                         <div
                             className="h-screen flex justify-center"
                             ref={myRef}
                             id="scroll-down"
+                            hidden={user ? false : true}
                         >
                             <div className="w-3/4 bg-[rgba(255,255,255,0.05)] p-5 md:p-20  z-50 backdrop-blur-8xl mt-40 md:mt-[18vh] rounded-2xl transform scale-110 md:scale-100 md:border-none border h-fit md:h-fit max-h-fit justify-center">
                                 <div className="flex flex-col justify-center">
@@ -350,12 +365,6 @@ const App = () => {
                             </div>
                         </div>
                     </>
-                ) : (
-                    <div className="flex w-full h-full md:h-3/4 justify-center items-center mb-20">
-                        <h1 className="text-3xl md:text-4xl text-white font-semibold">
-                            Please Login To Continue
-                        </h1>
-                    </div>
                 )}
             </div>
         </Router>
