@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { API_ENDPOINTS } from "../config/api";
 import { generateSubjectPrompt } from "../utils/emailHelpers";
+import { apiRequest } from "../utils/api";
 
 const SubjectSuggestions = ({
     emailContent,
@@ -22,18 +23,14 @@ const SubjectSuggestions = ({
         try {
             const prompt = generateSubjectPrompt(emailContent, tone);
 
-            const response = await fetch(
+            const response = await apiRequest(
                 API_ENDPOINTS.GENERATE_SUBJECT,
                 {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
                     body: JSON.stringify({ prompt }),
                 },
                 true
             );
-
             const data = await response.json();
 
             const suggestionLines = data.email

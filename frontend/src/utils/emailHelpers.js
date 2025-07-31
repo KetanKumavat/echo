@@ -20,7 +20,6 @@ export const generateEnhancedPrompt = (
     return prompt;
 };
 
-// Generate subject line prompt
 export const generateSubjectPrompt = (emailContent, tone = "formal") => {
     const toneInstruction = TONE_PROMPTS[tone] || TONE_PROMPTS.formal;
 
@@ -33,9 +32,7 @@ Email content: ${emailContent}
 Provide only the 3 subject lines, numbered 1-3, without any additional text or explanations.`;
 };
 
-// Parse AI response for subject and body
 export const parseEmailResponse = (response) => {
-    // Check if response contains both subject and body
     const subjectMatch = response.match(/Subject:\s*(.+?)(?:\n|$)/i);
 
     if (subjectMatch) {

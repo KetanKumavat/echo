@@ -367,21 +367,22 @@ const App = () => {
                         >
                             {/* Navigation Header */}
                             <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800">
-                                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                                    <div className="flex items-center justify-between h-16">
-                                        {/* Logo */}
-                                        <div className="flex items-center space-x-2">
-                                            <div className="text-2xl font-bold text-neutral-900 dark:text-white">
+                                <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+                                    <div className="flex items-center justify-between h-14 sm:h-16">
+                                        {/* Logo - Compact on mobile */}
+                                        <div className="flex items-center">
+                                            <div className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-white">
                                                 Echo
                                             </div>
                                         </div>
 
-                                        {/* Navigation Items */}
-                                        <div className="flex items-center space-x-4">
+                                        {/* Navigation Items - Adaptive Layout */}
+                                        <div className="flex items-center space-x-1 sm:space-x-4">
                                             {user && (
                                                 <>
+                                                    {/* Compose Button - Icon only on mobile, text on larger screens */}
                                                     <button
-                                                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                                                        className={`px-2 sm:px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                                                             currentView ===
                                                             "composer"
                                                                 ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900"
@@ -394,7 +395,7 @@ const App = () => {
                                                         }
                                                     >
                                                         <svg
-                                                            className="w-4 h-4 inline-block mr-2"
+                                                            className="w-4 h-4 inline-block sm:mr-2"
                                                             fill="none"
                                                             stroke="currentColor"
                                                             viewBox="0 0 24 24"
@@ -406,10 +407,14 @@ const App = () => {
                                                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                                             />
                                                         </svg>
-                                                        Compose
+                                                        <span className="hidden sm:inline">
+                                                            Compose
+                                                        </span>
                                                     </button>
+
+                                                    {/* History Button - Icon only on mobile, text on larger screens */}
                                                     <button
-                                                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                                                        className={`px-2 sm:px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                                                             currentView ===
                                                             "history"
                                                                 ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900"
@@ -422,7 +427,7 @@ const App = () => {
                                                         }
                                                     >
                                                         <svg
-                                                            className="w-4 h-4 inline-block mr-2"
+                                                            className="w-4 h-4 inline-block sm:mr-2"
                                                             fill="none"
                                                             stroke="currentColor"
                                                             viewBox="0 0 24 24"
@@ -434,7 +439,9 @@ const App = () => {
                                                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                                             />
                                                         </svg>
-                                                        History
+                                                        <span className="hidden sm:inline">
+                                                            History
+                                                        </span>
                                                     </button>
                                                 </>
                                             )}
@@ -443,23 +450,30 @@ const App = () => {
 
                                             {!user ? (
                                                 <button
-                                                    className="px-6 py-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-lg font-medium hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-200 transform hover:scale-[1.02]"
+                                                    className="px-3 sm:px-6 py-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-lg font-medium hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-200 transform hover:scale-[1.02] text-sm sm:text-base"
                                                     onClick={handleLogin}
                                                 >
-                                                    Sign In
+                                                    <span className="hidden xs:inline">
+                                                        Sign In
+                                                    </span>
+                                                    <span className="xs:hidden">
+                                                        In
+                                                    </span>
                                                 </button>
                                             ) : (
-                                                <div className="flex items-center space-x-3">
+                                                <div className="flex items-center space-x-2 sm:space-x-3">
                                                     <img
                                                         src={user.photoURL}
                                                         alt={user.displayName}
-                                                        className="w-8 h-8 rounded-full"
+                                                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full"
                                                     />
                                                     <button
-                                                        className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg font-medium transition-all duration-200 flex items-center space-x-2"
+                                                        className="px-2 sm:px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg font-medium transition-all duration-200 flex items-center space-x-1 sm:space-x-2"
                                                         onClick={handleLogout}
                                                     >
-                                                        <span>Logout</span>
+                                                        <span className="hidden sm:inline">
+                                                            Logout
+                                                        </span>
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             width="24"
@@ -470,7 +484,7 @@ const App = () => {
                                                             strokeWidth="2"
                                                             strokeLinecap="round"
                                                             strokeLinejoin="round"
-                                                            className="lucide lucide-log-out w-5 h-5"
+                                                            className="lucide lucide-log-out w-4 h-4 sm:w-5 sm:h-5"
                                                         >
                                                             <path d="m16 17 5-5-5-5" />
                                                             <path d="M21 12H9" />

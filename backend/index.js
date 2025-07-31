@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 import sendEmail from "./controller/sendEmail.js";
 import sendBulkEmail from "./controller/sendBulkEmail.js";
 import emailHistoryRoutes from "./routes/emailHistory.js";
-import verifyToken from "./middleware/auth.js";
+import verifyToken, { optionalAuth } from "./middleware/auth.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
