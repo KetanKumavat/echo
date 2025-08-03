@@ -12,21 +12,18 @@ import { auth } from "../firebase/firebaseConfig";
 import { motion, AnimatePresence } from "framer-motion";
 
 import "./styles/modern.css";
-
-// Components
 import EmailHistory from "./components/EmailHistory";
 import EmailPreview from "./components/EmailPreview";
 import ThemeToggle from "./components/ThemeToggle";
 import LandingPage from "./components/LandingPage";
 import EmailForm from "./components/EmailForm";
-
-// Hooks and utilities
 import { useEmailForm } from "./hooks/useEmailForm";
 import { API_ENDPOINTS } from "./config/api";
 import { COMPOSITION_MODES } from "./utils/constants";
 import { generateEnhancedPrompt } from "./utils/emailHelpers";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { apiRequest } from "./utils/api";
+import { Link } from "react-router-dom";
 
 const App = () => {
     // Authentication and UI state
@@ -369,20 +366,20 @@ const App = () => {
                             <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800">
                                 <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
                                     <div className="flex items-center justify-between h-14 sm:h-16">
-                                        {/* Logo - Compact on mobile */}
-                                        <div className="flex items-center">
-                                            <div className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-white">
-                                                Echo
+                                        <Link to="/">
+                                            <div className="flex items-center">
+                                                <div className="text-xl font-semibold text-neutral-900 dark:text-white">
+                                                    Echo
+                                                </div>
                                             </div>
-                                        </div>
+                                        </Link>
 
                                         {/* Navigation Items - Adaptive Layout */}
-                                        <div className="flex items-center space-x-1 sm:space-x-4">
+                                        <div className="flex justify-center items-center sm:space-x-4 space-x-2">
                                             {user && (
                                                 <>
-                                                    {/* Compose Button - Icon only on mobile, text on larger screens */}
                                                     <button
-                                                        className={`px-2 sm:px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                                                        className={`px-2 sm:px-4 py-2 rounded-lg font-medium flex justify-center items-center gap-2 transition-all duration-200 ${
                                                             currentView ===
                                                             "composer"
                                                                 ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900"
@@ -395,26 +392,27 @@ const App = () => {
                                                         }
                                                     >
                                                         <svg
-                                                            className="w-4 h-4 inline-block sm:mr-2"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="24"
+                                                            height="24"
+                                                            viewBox="0 0 24 24"
                                                             fill="none"
                                                             stroke="currentColor"
-                                                            viewBox="0 0 24 24"
+                                                            stroke-width="2"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-plus-icon lucide-plus w-5 h-5 sm:w-5 sm:h-5"
                                                         >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                                            />
+                                                            <path d="M5 12h14" />
+                                                            <path d="M12 5v14" />
                                                         </svg>
                                                         <span className="hidden sm:inline">
                                                             Compose
                                                         </span>
                                                     </button>
 
-                                                    {/* History Button - Icon only on mobile, text on larger screens */}
                                                     <button
-                                                        className={`px-2 sm:px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                                                        className={`px-2 sm:px-4 py-2 rounded-lg font-medium transition-all duration-200 flex gap-2 justify-center items-center ${
                                                             currentView ===
                                                             "history"
                                                                 ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-900"
@@ -427,18 +425,22 @@ const App = () => {
                                                         }
                                                     >
                                                         <svg
-                                                            className="w-4 h-4 inline-block sm:mr-2"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 24 24"
+                                                            width="24"
+                                                            height="24"
                                                             fill="none"
                                                             stroke="currentColor"
-                                                            viewBox="0 0 24 24"
+                                                            stroke-width="2"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            className="lucide lucide-mail-minus-icon lucide-mail-minus w-5 h-5 sm:w-5 sm:h-5"
                                                         >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                            />
+                                                            <path d="M22 15V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8" />
+                                                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                                            <path d="M16 19h6" />
                                                         </svg>
+
                                                         <span className="hidden sm:inline">
                                                             History
                                                         </span>
@@ -462,11 +464,44 @@ const App = () => {
                                                 </button>
                                             ) : (
                                                 <div className="flex items-center space-x-2 sm:space-x-3">
-                                                    <img
-                                                        src={user.photoURL}
-                                                        alt={user.displayName}
-                                                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full"
-                                                    />
+                                                    {user.photoURL ? (
+                                                        <img
+                                                            src={user.photoURL}
+                                                            alt={
+                                                                user.displayName
+                                                            }
+                                                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full"
+                                                            onError={(e) => {
+                                                                e.target.style.display =
+                                                                    "none";
+                                                                e.target.nextSibling.style.display =
+                                                                    "flex";
+                                                            }}
+                                                        />
+                                                    ) : (
+                                                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-600 dark:text-neutral-400">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                width="24"
+                                                                height="24"
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                strokeWidth="2"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                className="w-4 h-4 sm:w-5 sm:h-5"
+                                                            >
+                                                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                                                <circle
+                                                                    cx="9"
+                                                                    cy="7"
+                                                                    r="4"
+                                                                />
+                                                                <path d="m16 11 2 2 4-4" />
+                                                            </svg>
+                                                        </div>
+                                                    )}
                                                     <button
                                                         className="px-2 sm:px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg font-medium transition-all duration-200 flex items-center space-x-1 sm:space-x-2"
                                                         onClick={handleLogout}

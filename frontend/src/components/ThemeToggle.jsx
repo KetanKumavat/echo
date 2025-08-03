@@ -9,7 +9,7 @@ const ThemeToggle = () => {
             className="relative p-2 rounded-xl hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-all duration-300 group"
             aria-label="Toggle theme"
         >
-            <div className="relative w-6 h-6">
+            <div className="relative w-6 h-6 flex items-center justify-center">
                 {/* Sun icon - visible in dark mode */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -101,7 +101,7 @@ const EmailForm = ({
                             </label>
                             <input
                                 type="text"
-                                className="w-full px-4 py-3 border border-neutral-300 bg-neutral-50 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-neutral-500 dark:focus:ring-neutral-400 focus:border-transparent dark:bg-neutral-800 transition-all duration-200 text-black dark:text-white"
+                                className="w-full px-4 py-3 border border-neutral-300 bg-neutral-50 dark:border-neutral-600 rounded-lg dark:focus:ring-neutral-400 focus:border-transparent dark:bg-neutral-800 transition-all duration-200 text-black dark:text-white"
                                 placeholder="Enter your name"
                                 value={sender}
                                 onChange={(e) =>

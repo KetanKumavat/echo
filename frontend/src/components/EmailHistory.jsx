@@ -172,14 +172,18 @@ const EmailHistory = ({ user }) => {
 
     return (
         <div>
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
                 <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
                     Email History
                 </h2>
-                <form className="flex gap-4" onSubmit={e => e.preventDefault()} autoComplete="off">
-                    <div className="relative min-w-[140px]">
+                <form
+                    className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+                    onSubmit={(e) => e.preventDefault()}
+                    autoComplete="off"
+                >
+                    <div className="relative w-full sm:w-[140px]">
                         <select
-                            className="appearance-none w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 pr-8"
+                            className="appearance-none w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:border-transparent transition-all duration-200 pr-8"
                             value={filters.status}
                             onChange={(e) =>
                                 handleFilterChange("status", e.target.value)
@@ -208,11 +212,12 @@ const EmailHistory = ({ user }) => {
                     </div>
                     <input
                         type="text"
-                        className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 min-w-[200px]"
+                        className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400  focus:border-transparent transition-all duration-200 min-w-[200px]"
                         placeholder="Search emails..."
                         value={filters.search}
                         onChange={handleSearch}
                         autoComplete="off"
+                        // className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                     />
                 </form>
             </div>
@@ -241,27 +246,27 @@ const EmailHistory = ({ user }) => {
                 </div>
             ) : (
                 <>
-                    <div className="bg-white dark:bg-neutral-800 shadow overflow-hidden rounded-lg">
+                    <div className="bg-white dark:bg-neutral-800 shadow overflow-hidden sm:rounded-lg border border-neutral-200 dark:border-neutral-700">
                         <ul className="divide-y divide-neutral-200 dark:divide-neutral-700">
                             {emails.map((email) => (
                                 <li
                                     key={email._id}
-                                    className="px-6 py-4 hover:bg-neutral-50 dark:hover:bg-neutral-700"
+                                    className="px-4 sm:px-6 py-4 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-150"
                                 >
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex-1 min-w-0">
-                                            <div className="flex items-center justify-between">
-                                                <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">
+                                    <div className="flex items-center justify-between space-x-4">
+                                        <div className="flex-1 min-w-0 space-y-1">
+                                            <div className="flex items-center justify-between space-x-4">
+                                                <p className="text-sm font-medium text-neutral-900 dark:text-white truncate max-w-[200px] sm:max-w-xs">
                                                     {email.subject}
                                                 </p>
-                                                <div className="flex items-center gap-2">
+                                                <div className="flex items-center gap-2 flex-shrink-0">
                                                     {email.generatedByAI && (
-                                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                                            AI Generated
+                                                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 whitespace-nowrap">
+                                                            AI
                                                         </span>
                                                     )}
                                                     <span
-                                                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                                        className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${
                                                             email.status ===
                                                             "sent"
                                                                 ? "bg-green-100 text-green-800"
@@ -280,21 +285,22 @@ const EmailHistory = ({ user }) => {
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div className="mt-1 flex items-center justify-between">
-                                                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                                            <div className="flex items-center justify-between">
+                                                <p className="text-sm text-neutral-500 dark:text-neutral-400 truncate max-w-[200px] sm:max-w-xs">
                                                     To: {email.recipientEmail}
                                                 </p>
-                                                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                                                <p className="text-sm text-neutral-500 dark:text-neutral-400 flex-shrink-0">
                                                     {formatDate(email.sentAt)}
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-2 ml-4">
+                                        <div className="flex items-center gap-1 sm:gap-2 ml-2 sm:ml-4 flex-shrink-0">
                                             <button
                                                 onClick={() =>
                                                     viewEmailDetails(email._id)
                                                 }
-                                                className="btn btn-ghost border-none dark:text-white hover:bg-neutral-200/50 dark:hover:bg-neutral-500 transition-colors"
+                                                className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-white transition-colors"
+                                                title="View Details"
                                             >
                                                 <svg
                                                     className="w-4 h-4"
@@ -320,7 +326,8 @@ const EmailHistory = ({ user }) => {
                                                 onClick={() =>
                                                     deleteEmail(email._id)
                                                 }
-                                                className="btn btn-ghost text-red-600 hover:text-red-800 border-none"
+                                                className="p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-400 transition-colors"
+                                                title="Delete Email"
                                             >
                                                 <svg
                                                     className="w-4 h-4"
@@ -426,16 +433,16 @@ const EmailHistory = ({ user }) => {
 
             {/* Email Details Modal */}
             {selectedEmail && (
-                <div className="fixed inset-0 bg-neutral-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-                    <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white dark:bg-neutral-800">
+                <div className="fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm overflow-y-auto h-full w-full z-50 transition-colors">
+                    <div className="relative top-20 mx-auto p-5 border border-neutral-200/50 dark:border-neutral-600/50 w-11/12 md:w-3/4 lg:w-1/2 shadow-xl dark:shadow-neutral-900/50 rounded-xl bg-white dark:bg-neutral-800 transition-all">
                         <div className="mt-3">
                             <div className="flex justify-between items-center mb-4">
-                                <h3 className="text-lg font-medium text-neutral-900 dark:text-white">
+                                <h3 className="text-lg font-medium text-neutral-900 dark:text-white transition-colors">
                                     Email Details
                                 </h3>
                                 <button
                                     onClick={() => setSelectedEmail(null)}
-                                    className="text-neutral-400 hover:text-neutral-600 dark:text-neutral-300 dark:hover:text-neutral-100"
+                                    className="p-2 text-neutral-400 hover:text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-all"
                                 >
                                     <svg
                                         className="w-6 h-6"
@@ -453,56 +460,62 @@ const EmailHistory = ({ user }) => {
                                 </button>
                             </div>
 
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="form-label">
-                                        Subject
-                                    </label>
-                                    <p className="text-sm text-neutral-900 dark:text-white">
-                                        {selectedEmail.subject}
-                                    </p>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-6">
+                                <div className="bg-neutral-50 dark:bg-neutral-700/50 rounded-xl p-4 space-y-4 border border-neutral-200/50 dark:border-neutral-600/50 transition-colors">
                                     <div>
-                                        <label className="form-label">
-                                            From
+                                        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 block mb-1 transition-colors">
+                                            Subject
                                         </label>
-                                        <p className="text-sm text-neutral-900 dark:text-white">
-                                            {selectedEmail.senderEmail}
+                                        <p className="text-neutral-900 dark:text-white transition-colors">
+                                            {selectedEmail.subject}
                                         </p>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 block mb-1 transition-colors">
+                                                From
+                                            </label>
+                                            <p className="text-neutral-900 dark:text-white transition-colors">
+                                                {selectedEmail.senderEmail}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 block mb-1 transition-colors">
+                                                To
+                                            </label>
+                                            <p className="text-neutral-900 dark:text-white transition-colors">
+                                                {selectedEmail.recipientEmail}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div>
-                                        <label className="form-label">To</label>
-                                        <p className="text-sm text-neutral-900 dark:text-white">
-                                            {selectedEmail.recipientEmail}
+                                        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 block mb-1 transition-colors">
+                                            Sent At
+                                        </label>
+                                        <p className="text-neutral-900 dark:text-white transition-colors">
+                                            {formatDate(selectedEmail.sentAt)}
                                         </p>
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="form-label">
-                                        Sent At
-                                    </label>
-                                    <p className="text-sm text-neutral-900 dark:text-white">
-                                        {formatDate(selectedEmail.sentAt)}
-                                    </p>
-                                </div>
-                                <div>
-                                    <label className="form-label">
+                                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 block mb-1 transition-colors">
                                         Email Body
                                     </label>
-                                    <div
-                                        className="border rounded-md p-4 bg-neutral-50 dark:bg-neutral-700 max-h-96 overflow-y-auto"
-                                        dangerouslySetInnerHTML={{
-                                            __html: selectedEmail.body,
-                                        }}
-                                    />
+                                    <div className="border border-neutral-200 dark:border-neutral-600/50 rounded-xl p-6 bg-white dark:bg-neutral-800/50 transition-colors">
+                                        <div
+                                            className="prose prose-sm max-w-none dark:prose-invert prose-neutral dark:prose-neutral text-neutral-900 dark:text-neutral-100 max-h-96 overflow-y-auto transition-colors"
+                                            dangerouslySetInnerHTML={{
+                                                __html: selectedEmail.body,
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="flex justify-end mt-6">
                                 <button
                                     onClick={() => setSelectedEmail(null)}
-                                    className="btn btn-secondary"
+                                    className="px-6 py-2 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-200/70 dark:hover:bg-neutral-600/50 rounded-lg transition-all duration-200 disabled:opacity-50 flex items-center"
                                 >
                                     Close
                                 </button>

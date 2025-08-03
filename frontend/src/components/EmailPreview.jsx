@@ -26,11 +26,11 @@ const EmailPreview = ({
 
     return (
         <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-colors"
             onClick={onClose}
         >
             <div
-                className="bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+                className="bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl dark:shadow-neutral-900/50 max-w-4xl w-full max-h-[90vh] overflow-hidden transition-colors"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}
@@ -61,12 +61,12 @@ const EmailPreview = ({
                 {/* Email Preview */}
                 <div className="p-6 max-h-[80vh] overflow-y-auto">
                     {/* Email Headers */}
-                    <div className="bg-neutral-50 dark:bg-neutral-700 rounded-xl p-4 mb-6 space-y-3">
+                    <div className="bg-neutral-50 dark:bg-neutral-700/50 rounded-xl p-4 mb-6 space-y-3 border border-neutral-200/50 dark:border-neutral-600/50 transition-colors">
                         <div className="flex items-start">
-                            <span className="font-medium text-neutral-700 dark:text-neutral-300 w-16">
+                            <span className="font-medium text-neutral-700 dark:text-neutral-300 w-16 transition-colors">
                                 From:
                             </span>
-                            <span className="text-neutral-900 dark:text-white">
+                            <span className="text-neutral-900 dark:text-white transition-colors">
                                 {senderName} &lt;{senderEmail}&gt;
                             </span>
                         </div>
@@ -95,7 +95,7 @@ const EmailPreview = ({
                             </div>
                         </div>
                         <div className="flex items-start">
-                            <span className="font-medium text-neutral-700 dark:text-neutral-300 w-16">
+                            <span className="font-medium text-neutral-700 dark:text-neutral-200 w-16">
                                 Subject:
                             </span>
                             <span className="text-neutral-900 dark:text-white font-medium">
@@ -105,18 +105,18 @@ const EmailPreview = ({
                     </div>
 
                     {/* Email Content */}
-                    <div className="border border-neutral-200 dark:border-neutral-600 rounded-xl p-6 bg-white dark:bg-neutral-800">
+                    <div className="border border-neutral-200 dark:border-neutral-600/50 rounded-xl p-6 bg-white dark:bg-neutral-800/50 transition-colors">
                         <div
-                            className="prose prose-sm max-w-none dark:prose-invert prose-neutral dark:prose-neutral text-black dark:text-white"
+                            className="prose prose-sm max-w-none dark:prose-invert prose-neutral dark:prose-neutral text-neutral-900 dark:text-neutral-100 transition-colors"
                             dangerouslySetInnerHTML={{ __html: body }}
                         />
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center justify-end gap-3 p-6 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-700">
+                <div className="flex items-center justify-end gap-3 p-6 border-t border-neutral-200 dark:border-neutral-600/50 bg-neutral-50 dark:bg-neutral-700/50 transition-colors">
                     <button
-                        className="px-6 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded-lg transition-colors disabled:opacity-50 flex items-center"
+                        className="px-6 py-2 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-200/70 dark:hover:bg-neutral-600/50 rounded-lg transition-all duration-200 disabled:opacity-50 flex items-center"
                         onClick={onClose}
                         disabled={sending}
                     >
@@ -136,7 +136,7 @@ const EmailPreview = ({
                         Cancel
                     </button>
                     <button
-                        className="px-6 py-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-lg font-medium hover:bg-neutral-800 dark:hover:bg-neutral-100 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:transform-none flex items-center"
+                        className="px-6 py-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-lg font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:transform-none disabled:hover:scale-100 flex items-center shadow-sm dark:shadow-white/10"
                         onClick={handleSend}
                         disabled={sending}
                     >

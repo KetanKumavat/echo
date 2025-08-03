@@ -145,7 +145,7 @@ const LandingPage = ({ onGetStarted }) => {
     ];
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white overflow-x-hidden">
             {/* Brand Hero Section */}
             <section className="relative bg-white overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
@@ -212,9 +212,10 @@ const LandingPage = ({ onGetStarted }) => {
                         {/* Left Content */}
                         <div>
                             <motion.div
-                                initial={{ opacity: 0, x: -30 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5 }}
+                                viewport={{ once: true, amount: 0.3 }}
                             >
                                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium mb-6">
                                     <span className="animate-pulse mr-2">
@@ -272,9 +273,10 @@ const LandingPage = ({ onGetStarted }) => {
                         {/* Right - Interactive Demo */}
                         <div>
                             <motion.div
-                                initial={{ opacity: 0, x: 30 }}
+                                initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                viewport={{ once: true, amount: 0.3 }}
                                 className="relative"
                             >
                                 <div className="bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden">
@@ -384,7 +386,7 @@ const LandingPage = ({ onGetStarted }) => {
                                                             )
                                                         }
                                                         placeholder="e.g., Meeting follow-up, Project proposal, Thank you note..."
-                                                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                        className="w-full p-3 border border-neutral-300 rounded-lg focus:border-transparent bg-white "
                                                     />
                                                 </div>
 
@@ -500,9 +502,10 @@ const LandingPage = ({ onGetStarted }) => {
                     {/* Before/After Comparison */}
                     <div className="grid md:grid-cols-2 gap-8 mb-16">
                         <motion.div
-                            initial={{ opacity: 0, x: -30 }}
+                            initial={{ opacity: 0, x: 0, y: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6 }}
+                            viewport={{ once: true, amount: 0.3 }}
                             className="bg-red-50 p-8 rounded-2xl border-2 border-red-200"
                         >
                             <h3 className="text-2xl font-bold text-red-600 mb-4 flex items-center">
@@ -538,9 +541,10 @@ const LandingPage = ({ onGetStarted }) => {
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, x: 30 }}
+                            initial={{ opacity: 0, x: 0, y: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
+                            transition={{ duration: 0.4 }}
+                            viewport={{ once: true, amount: 0.3 }}
                             className="bg-green-50 p-8 rounded-2xl border-2 border-green-200"
                         >
                             <h3 className="text-2xl font-bold text-green-600 mb-4 flex items-center">
@@ -584,9 +588,10 @@ const LandingPage = ({ onGetStarted }) => {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{
-                                    duration: 0.5,
+                                    duration: 0.3,
                                     delay: index * 0.1,
                                 }}
+                                viewport={{ once: true, amount: 0.3 }}
                                 className="group bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 border border-neutral-200 hover:border-blue-300"
                             >
                                 <div className="flex items-start justify-between mb-4">
@@ -609,9 +614,10 @@ const LandingPage = ({ onGetStarted }) => {
 
                     {/* Interactive Tone Comparison */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.4 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 text-center"
                     >
                         <h3 className="text-2xl font-bold text-neutral-900 mb-4">
